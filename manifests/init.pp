@@ -11,9 +11,10 @@ class webserver {
 
   #$folders = ["C:\\Inetpub",]
 
-  file {"C:\\inetpub\\website\\index.html":
-  ensure => file, 
-  source => 'puppet:///modules/webserver/index.html',
+  file { index: 
+    ensure => file, 
+    path   => "C:\\inetpub\\website\\index.html",
+    source => 'puppet:///modules/webserver/index.html',
   }
 
 $iis_features = ['Web-WebServer','Web-Scripting-Tools']
@@ -28,19 +29,19 @@ iis_site {'Default Web Site':
   require => Iis_feature['Web-WebServer'],
 }
 
-iis_site { 'minimal':
+iis_site { 'website':
   ensure          => 'started',
-  physicalpath    => 'c:\\inetpub\\minimal',
+  physicalpath    => 'c:\\inetpub\\website',
   applicationpool => 'DefaultAppPool',
   require         => [
-    File['minimal'],
+    File["C:\\inetpub\\website\\index.html"],
     Iis_site['Default Web Site']
   ],
 }
 
 file { 'minimal':
   ensure => 'directory',
-  path   => 'c:\\inetpub\\minimal',
+  path   => 'c:\\inetpub\\website',
 }
 
 }
