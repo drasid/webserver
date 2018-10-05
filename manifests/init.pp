@@ -9,9 +9,7 @@ class webserver {
     ensure => directory, 
   }
 
-  #$folders = ["C:\\Inetpub",]
-
-  file { index: 
+  file { 'index': 
     ensure => file, 
     path   => "C:\\inetpub\\website\\index.html",
     source => 'puppet:///modules/webserver/index.html',
@@ -31,10 +29,10 @@ iis_site {'Default Web Site':
 
 iis_site { 'website':
   ensure          => 'started',
-  physicalpath    => 'c:\\inetpub\\website',
+  physicalpath    => 'C:\\inetpub\\website',
   applicationpool => 'DefaultAppPool',
   require         => [
-    File["C:\\inetpub\\website\\index.html"],
+    File['index'],
     Iis_site['Default Web Site']
   ],
 }
