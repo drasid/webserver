@@ -37,9 +37,4 @@ iis_site { 'website':
   ],
 }
 
-file { 'website':
-  ensure => 'directory',
-  path   => 'c:\\inetpub\\website',
-}
-
 }
