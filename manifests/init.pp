@@ -5,7 +5,7 @@ class webserver {
     ensure => directory, 
   }
 
-  file {"C:\\inetpub\\website\\index.html"
+  file {"C:\\inetpub\\website\\index.html":
   ensure => file, 
   source => 'puppet:///modules/webserver/index.html',
   }
