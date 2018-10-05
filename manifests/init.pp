@@ -39,7 +39,7 @@ iis_site { 'website':
   ],
 }
 
-file { 'minimal':
+file { 'website':
   ensure => 'directory',
   path   => 'c:\\inetpub\\website',
 }
